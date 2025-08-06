@@ -55,10 +55,10 @@ public class ExerciseClass {
 
     public void enroleForClass(Member member) {
         // add member to register 
-        if (/* not on list */true) {
-            register.add(member);
+        if (register.contains(member)) {
+             System.out.println("Member already registered for this class.");
         } else {
-            // member already registered 
+              register.add(member);
         }
 
     }
