@@ -15,12 +15,15 @@ public class Exercise {
 
     String name;
     int ClassCategory; // int in this class but a string in ExercisesClass class 
-    Intencity difficultyLevel;
+    Intencity difficulty;
     int set;
+    Measurment  metric; // this is not used in the current implementation, but can be used for future enhancements
     int rep;
     int duration; /* date time instead of int*/ 
+    
     enum Intencity {EASY,MODERATE,HARD}
-
+    static enum Measurment { COUNT,TIME  }
+    
     public static ArrayList<Exercise> ExerciseList;
 
     public static ArrayList<Exercise> getExercisesInCategory(int category) {
@@ -37,7 +40,7 @@ public class Exercise {
     public Exercise(String name, int set, int rep, int duration) {
         this.name = name;
         this.ClassCategory = 1;
-        this.difficultyLevel = Intencity.EASY;
+        this.difficulty = Intencity.EASY;
         this.set = set;
         this.rep = rep;
         this.duration = duration;
@@ -52,10 +55,11 @@ public class Exercise {
 
     }
 
-    public Exercise(String name, int ClassCategory, Intencity difficulty, int set, int rep, int duration) {
+    public Exercise(String name, int ClassCategory, Intencity level,  Measurment  unit, int set, int rep, int duration) {
         this.name = name;
         this.ClassCategory = ClassCategory;
-        this.difficultyLevel = difficulty;
+        this.difficulty = level;
+        this.metric = unit;
         this.set = set;
         this.rep = rep;
         this.duration = duration;

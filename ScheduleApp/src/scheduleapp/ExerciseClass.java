@@ -6,7 +6,7 @@ package scheduleapp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+// import java.util.List;
 
 /**
  *
@@ -80,13 +80,25 @@ public class ExerciseClass {
         and measure how well it was executed
      */
     public int performExercise(Member member,Exercise exercise  ) { 
-        int points = CalculatePoints( exercise);      
+        
+        int points = CalculatePointsbyReps( exercise);      
         
         member.rating +=  points; 
         
         return points;
     }
-      public int CalculatePoints(Exercise exercise) {
+      public int CalculatePointsbyReps(Exercise exercise) {
+        
+        int totalRepsCompleted = 0,totalTimeDuration = 0; // capture input 
+        int points;
+        // formula to calculate points 
+        
+        points = totalRepsCompleted /(exercise.rep * exercise.set);
+        /**/
+        
+        return points;
+    }
+      public int CalculatePointsbyDuration(Exercise exercise) {
         
         int totalRepsCompleted = 0,totalTimeDuration = 0; // capture input 
         int points;
