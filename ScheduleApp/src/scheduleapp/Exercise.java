@@ -20,9 +20,10 @@ public class Exercise {
     Measurment  metric; // this is not used in the current implementation, but can be used for future enhancements
     int rep;
     int duration; /* date time instead of int*/ 
+    double techniqueAccuracyThreshold ;
     
-    enum Intencity {EASY,MODERATE,HARD}
-    static enum Measurment { COUNT,TIME  }
+    static enum Intencity {EASY,MODERATE,HARD}
+    static enum Measurment {COUNT,TIME,FORM}
     
     public static ArrayList<Exercise> ExerciseList;
 

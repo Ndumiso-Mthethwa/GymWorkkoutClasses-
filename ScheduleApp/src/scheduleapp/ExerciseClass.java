@@ -20,7 +20,9 @@ public class ExerciseClass {
     ArrayList<Exercise> workoutRoutine;
     ArrayList<Member> register;
     ArrayList<Member> attendance;
-    public static ArrayList<String> Classes = new ArrayList<>(Arrays.asList("Yoga", "Zumba", "Dance", "Spinning", "HIIT", "Bodyweight", "cardio", "pilates", "CrossFit", "Calisthenics"));
+    public static ArrayList<String> Classes = new ArrayList<>(Arrays.asList(
+        "Yoga", "Zumba", "Dance", "Spinning", "HIIT", "Bodyweight", 
+        "cardio", "pilates", "CrossFit", "Calisthenics"));
 
     ExerciseClass(ArrayList<Exercise> routine) {
         this.workoutRoutine = routine;
@@ -79,18 +81,32 @@ public class ExerciseClass {
         method to perform the exercise 
         and measure how well it was executed
      */
-    public int performExercise(Member member,Exercise exercise  ) { 
+    public double performExercise(Member member,Exercise exercise  ) { 
         
-        int points = CalculatePointsbyReps( exercise);      
+        double points;
+        switch (exercise.metric) {
+            case COUNT:
+                points = CalculatePointsbyReps(exercise);
+                break;
+            case TIME:
+                points = CalculatePointsbyDuration(exercise);
+                break;
+            case FORM:
+                    points = CalculatePointsbyTechnique(exercise);
+                break;
+            default:
+                points = 0; // no points if metric is not recognized
+        }
+       // = CalculatePointsbyReps( exercise);      
         
         member.rating +=  points; 
         
         return points;
     }
-      public int CalculatePointsbyReps(Exercise exercise) {
+      public double CalculatePointsbyReps(Exercise exercise) {
         
         int totalRepsCompleted = 0,totalTimeDuration = 0; // capture input 
-        int points;
+        double points;
         // formula to calculate points 
         
         points = totalRepsCompleted /(exercise.rep * exercise.set);
@@ -98,13 +114,31 @@ public class ExerciseClass {
         
         return points;
     }
-      public int CalculatePointsbyDuration(Exercise exercise) {
+      public double CalculatePointsbyDuration(Exercise exercise) {
         
-        int totalRepsCompleted = 0,totalTimeDuration = 0; // capture input 
-        int points;
+         int totalDurationHeld = 0; // capture input 
+        double points;
+        points = 2* (totalDurationHeld /(exercise.duration));
+        
+        // points += totalRepsCompleted /(exercise.rep * exercise.set);
+        
+        
+        return points;
+    }
+      public double CalculatePointsbyTechnique(Exercise exercise) {
+        
+        Double  techniqueSatisfactory = 0.0; // capture input 
+        double points;
         // formula to calculate points 
-        
-        points = totalRepsCompleted /(exercise.rep * exercise.set);
+        if (techniqueSatisfactory >= exercise.techniqueAccuracyThreshold) {
+            points = techniqueSatisfactory * 2; // satisfactory percentage * 2 points for good technique
+        } else {
+            points = 1; // no points for poor technique
+            
+        }
+        // points =+ totalRepsCompleted /(exercise.rep * exercise.set);
+        // points =+ totalDurationHeld /(exercise.duration);
+
         /**/
         
         return points;
